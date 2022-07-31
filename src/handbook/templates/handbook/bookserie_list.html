@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} Bookseries list {% endblock title %}
+{% block header %} Bookseries list {% endblock header %}
+
+{% block body %}
+<ul>
+    {% for bookserie in object_list %}
+    <li><a href="{% url 'handbook:serie-det' bookserie.pk%}">{{ bookserie.name }}</a> <a href="{% url 'handbook:serie-edit' bookserie.pk %}">(EDIT)</a></li>
+    {% endfor %}
+</ul>
+{% endblock body %}

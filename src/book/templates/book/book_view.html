@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} About book {% endblock title %}
+{% block header %} {{ book.name}} {% endblock header %}
+
+{% block body %}
+<b>Name:</b> {{ book.name }} <br>
+<b>Foto:</b> <img style='max-width: 100px' src={{ book.foto.url }}/> <br>
+<b>Price:</b> {{ book.price }} <br>
+<b>Author:</b> {{ book.author }} <br>
+<b>Seria:</b> {{ book.seria }} <br>
+<b>Genre:</b> {{ book.genre }} <br>
+<b>Publisher:</b> {{ book.publisher }} <br>
+<b>Year:</b> {{ book.year }} <br>
+<b>Pages:</b> {{ book.number_of_pages }} <br>
+<b>Cover:</b> {{ book.cover }} <br>
+<b>Bookformat:</b> {{ book.bookformat }} <br>
+<b>ISBN:</b> {{ book.isbn }} <br>
+<b>Weight:</b> {{ book.weight }} <br>
+<b>Age restrictions:</b> {{ book.restrictions }} <br>
+<b>Number of books:</b> {{ book.number_of_books }} <br>
+<b>Active y/n:</b> {{ book.activity }} <br>
+<b>Rating:</b> {{ book.rating }} <br>
+<b>Date of creation</b> {{ book.date_of_creation }} <br>
+<b>Date of edit</b> {{ book.date_of_edit }} <br>
+{% endblock body %}

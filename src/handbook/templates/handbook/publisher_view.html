@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %} About publisher {% endblock title %}
+{% block header %} {{ object.name}} {% endblock header %}
+
+{% block body %}
+<b>Name:</b> {{ object.name }} <br>
+<b>Description:</b> {{ object.description}}
+{% endblock body %}

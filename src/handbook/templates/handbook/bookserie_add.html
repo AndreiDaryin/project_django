@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} Add a serie {% endblock title %}
+{% block header %} Add a serie {% endblock header %}
+
+{% block body %}
+<form action="" method="post">
+{% csrf_token %}
+{{ form.as_p }} <br>
+<input type="submit">
+</form>
+{% endblock body %}

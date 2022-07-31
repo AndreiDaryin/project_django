@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Add an author {% endblock title %}
+{% block header %} Add an author {% endblock header %}
+
+{% block body %}
+<form action="" method="post">
+{% csrf_token %}
+{{ form|crispy }} <br>
+<input type="submit">
+</form>
+{% endblock body %}

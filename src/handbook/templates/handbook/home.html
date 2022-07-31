@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %} Буквоед: домашняя страница {% endblock title %}
+
+{% block body %}
+<div class="container text-center">
+  <div class="row align-items-start">
+    <div class="col">
+      Наши новинки
+        {% for obj in new_books %}
+            <li><a href="{% url 'book:book-det' obj.pk %}"><img style='max-width: 100px' src={{ obj.foto.url }}/></a></li>
+        {% endfor %}
+    </div>
+    <div class="col">
+      Покупатели рекомендуют
+        {% for obj in best_books %}
+            <li><a href="{% url 'book:book-det' obj.pk %}"><img style='max-width: 100px' src={{ obj.foto.url }}/></a></li>
+        {% endfor %}
+    </div>
+    <div class="col">
+      Наши акции
+        {% for obj in discount %}
+            <li><a href="{% url 'book:book-det' obj.pk %}"><img style='max-width: 100px' src={{ obj.foto.url }}/></a></li>
+        {% endfor %}    </div>
+  </div>
+  <div class="row align-items-center">
+    <div class="col">
+      One of three columns
+    </div>
+    <div class="col">
+      One of three columns
+    </div>
+    <div class="col">
+      One of three columns
+    </div>
+  </div>
+  <div class="row align-items-end">
+    <div class="col">
+      One of three columns
+    </div>
+    <div class="col">
+      One of three columns
+    </div>
+    <div class="col">
+      One of three columns
+    </div>
+  </div>
+</div>
+
+{% endblock body %}

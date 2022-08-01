@@ -7,15 +7,15 @@ from . import forms
 
 
 class BookList(generic.ListView):
-    template_name = 'book\\book_list.html'
+    template_name = 'book//book_list.html'
     model = models.Book
 
 class BookDetailView(generic.DetailView):
-    template_name = 'book\\book_view.html'
+    template_name = 'book//book_view.html'
     model = models.Book
 
 class BookAdd(LoginRequiredMixin, generic.CreateView):
-    template_name = 'book\\book_add.html'
+    template_name = 'book//book_add.html'
     model = models.Book
     form_class = forms.AddBookForm
     login_url = reverse_lazy("account:user-login")
@@ -24,13 +24,13 @@ class BookAdd(LoginRequiredMixin, generic.CreateView):
         return reverse_lazy("book:book-det", kwargs={'pk': self.object.pk})  
     
 class BookDeleteView(LoginRequiredMixin, generic.DeleteView):
-    template_name = 'book\\book_delete.html'
+    template_name = 'book//book_delete.html'
     model = models.Book
     success_url = reverse_lazy("book:book-list")
     login_url = reverse_lazy("account:user-login")
 
 class BookEditView(LoginRequiredMixin, generic.UpdateView):
-    template_name = 'book\\book_edit_view.html'
+    template_name = 'book//book_edit_view.html'
     model = models.Book
     form_class = forms.AddBookForm
     login_url = reverse_lazy("account:user-login")

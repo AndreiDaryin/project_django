@@ -14,7 +14,7 @@ def handbook_view(request):
     return HttpResponse("<h1>This is our handbook. Here you can find everything you want</h1>")
 
 class HomePage(generic.TemplateView):
-    template_name = 'handbook\home.html'
+    template_name = 'handbook/home.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -29,15 +29,15 @@ class HomePage(generic.TemplateView):
 
     
 class AuthorList(generic.ListView):
-    template_name = 'handbook\\author_list.html'
+    template_name = 'handbook//author_list.html'
     model = models.Author
 
 class AuthorDetailView(generic.DetailView):
-    template_name = 'handbook\\author_view.html'
+    template_name = 'handbook//author_view.html'
     model = models.Author
 
 class AuthorAdd(LoginRequiredMixin, generic.CreateView):
-    template_name = 'handbook\\author_add.html'
+    template_name = 'handbook//author_add.html'
     model = models.Author
     form_class = forms.AddAuthorForm
     login_url = reverse_lazy("account:user-login")
@@ -46,13 +46,13 @@ class AuthorAdd(LoginRequiredMixin, generic.CreateView):
         return reverse_lazy("handbook:auth-det", kwargs={'pk': self.object.pk})  
     
 class AuthorDeleteView(LoginRequiredMixin, generic.DeleteView):
-    template_name = 'handbook\\author_delete.html'
+    template_name = 'handbook//author_delete.html'
     model = models.Author
     success_url = reverse_lazy("handbook:auth-list")
     login_url = reverse_lazy("account:user-login")
 
 class AuthorEditView(LoginRequiredMixin, generic.UpdateView):
-    template_name = 'handbook\\author_edit_view.html'
+    template_name = 'handbook//author_edit_view.html'
     model = models.Author
     form_class = forms.AddAuthorForm
     login_url = reverse_lazy("account:user-login")
@@ -63,14 +63,14 @@ class AuthorEditView(LoginRequiredMixin, generic.UpdateView):
 
 
 class BookseriesList(generic.ListView):
-    template_name = 'handbook\\bookserie_list.html'
+    template_name = 'handbook//bookserie_list.html'
     model = models.Bookseries
 class BookseriesDetailView(generic.DetailView):
-    template_name = 'handbook\\bookserie_view.html'
+    template_name = 'handbook//bookserie_view.html'
     model = models.Bookseries
 
 class BookseriesAdd(LoginRequiredMixin, generic.CreateView):
-    template_name = 'handbook\\bookserie_add.html'
+    template_name = 'handbook//bookserie_add.html'
     model = models.Bookseries
     form_class = forms.AddSerieForm
     login_url = reverse_lazy("account:user-login")
@@ -80,13 +80,13 @@ class BookseriesAdd(LoginRequiredMixin, generic.CreateView):
        
     
 class BookseriesDeleteView(LoginRequiredMixin, generic.DeleteView):
-    template_name = 'handbook\\bookserie_delete.html'
+    template_name = 'handbook//bookserie_delete.html'
     model = models.Bookseries
     success_url = reverse_lazy("handbook:serie-list")
     login_url = reverse_lazy("account:user-login")
 
 class BookseriesEditView(LoginRequiredMixin, generic.UpdateView):
-    template_name = 'handbook\\bookserie_edit_view.html'
+    template_name = 'handbook//bookserie_edit_view.html'
     model = models.Bookseries
     form_class = forms.AddSerieForm
     login_url = reverse_lazy("account:user-login")
@@ -96,14 +96,14 @@ class BookseriesEditView(LoginRequiredMixin, generic.UpdateView):
         #return f"/handbook/author/{self.object.pk}/"
 
 class GenreList(generic.ListView):
-    template_name = 'handbook\\genre_list.html'
+    template_name = 'handbook//genre_list.html'
     model = models.Bookgenre
 class GenreDetailView(generic.DetailView):
-    template_name = 'handbook\\genre_view.html'
+    template_name = 'handbook//genre_view.html'
     model = models.Bookgenre
 
 class GenreAdd(LoginRequiredMixin, generic.CreateView):
-    template_name = 'handbook\\genre_add.html'
+    template_name = 'handbook//genre_add.html'
     model = models.Bookgenre
     form_class = forms.AddGenreForm
     login_url = reverse_lazy("account:user-login")
@@ -113,13 +113,13 @@ class GenreAdd(LoginRequiredMixin, generic.CreateView):
        
     
 class GenreDeleteView(LoginRequiredMixin, generic.DeleteView):
-    template_name = 'handbook\\genre_delete.html'
+    template_name = 'handbook//genre_delete.html'
     model = models.Bookgenre
     success_url = reverse_lazy("handbook:genre-list")
     login_url = reverse_lazy("account:user-login")
 
 class GenreEditView(LoginRequiredMixin, generic.UpdateView):
-    template_name = 'handbook\\genre_edit_view.html'
+    template_name = 'handbook//genre_edit_view.html'
     model = models.Bookgenre
     form_class = forms.AddGenreForm
     login_url = reverse_lazy("account:user-login")
@@ -129,14 +129,14 @@ class GenreEditView(LoginRequiredMixin, generic.UpdateView):
         #return f"/handbook/author/{self.object.pk}/"
 
 class PublisherList(generic.ListView):
-    template_name = 'handbook\\publisher_list.html'
+    template_name = 'handbook//publisher_list.html'
     model = models.Publisher
 class PublisherDetailView(generic.DetailView):
-    template_name = 'handbook\\publisher_view.html'
+    template_name = 'handbook//publisher_view.html'
     model = models.Publisher
 
 class PublisherAdd(LoginRequiredMixin, generic.CreateView):
-    template_name = 'handbook\\publisher_add.html'
+    template_name = 'handbook//publisher_add.html'
     model = models.Publisher
     form_class = forms.AddPublisherForm
     login_url = reverse_lazy("account:user-login")
@@ -146,13 +146,13 @@ class PublisherAdd(LoginRequiredMixin, generic.CreateView):
        
     
 class PublisherDeleteView(LoginRequiredMixin, generic.DeleteView):
-    template_name = 'handbook\\publisher_delete.html'
+    template_name = 'handbook//publisher_delete.html'
     model = models.Publisher
     success_url = reverse_lazy("handbook:publisher-list")
     login_url = reverse_lazy("account:user-login")
 
 class PublisherEditView(LoginRequiredMixin, generic.UpdateView):
-    template_name = 'handbook\\publisher_edit_view.html'
+    template_name = 'handbook//publisher_edit_view.html'
     model = models.Publisher
     form_class = forms.AddPublisherForm
     login_url = reverse_lazy("account:user-login")

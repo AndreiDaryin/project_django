@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %} Add a genre {% endblock title %}
-{% block header %} Add a genre {% endblock header %}
+{% block header %} Edit a genre {% endblock header %}
 
 {% block body %}
+{% if perms.handbook.edit_bookgenre %}
 <form action="" method="post">
    {% csrf_token %}
-   {{ form.as_p }} <br>
+   {{ form|crispy }} <br>
    <input type="submit">
 </form>
+{% else %} <h2>Недостаточно прав </h2> 
+{% endif %}
 {% endblock body %}

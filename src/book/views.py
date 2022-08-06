@@ -10,6 +10,10 @@ class BookList(generic.ListView):
     template_name = 'book//book_list.html'
     model = models.Book
 
+class BookView(generic.DetailView):
+    template_name = 'book//book_card.html'
+    model = models.Book
+
 class BookDetailView(generic.DetailView):
     template_name = 'book//book_view.html'
     model = models.Book

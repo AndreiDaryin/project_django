@@ -2,49 +2,56 @@
 
 {% block title %} Буквоед: домашняя страница {% endblock title %}
 
-{% block body %} 
-<div class="container text-center">
-  <div class="row align-items-start">
-    <div class="col">
-      Наши новинки
-        {% for obj in new_books %}
-            <li><a href="{% url 'book:book-det' obj.pk %}"><img style='max-width: 100px' src={{ obj.foto.url }}/></a></li>
-        {% endfor %}
-    </div>
-    <div class="col">
-      Покупатели рекомендуют
-        {% for obj in best_books %}
-            <li><a href="{% url 'book:book-det' obj.pk %}"><img style='max-width: 100px' src={{ obj.foto.url }}/></a></li>
-        {% endfor %}
-    </div>
-    <div class="col">
-      Наши акции
-        {% for obj in discount %}
-            <li><a href="{% url 'book:book-det' obj.pk %}"><img style='max-width: 100px' src={{ obj.foto.url }}/></a></li>
-        {% endfor %}    </div>
+{% block body %}
+<h2>Новое поступление</h2> 
+<div class="container text-center"></div>
+  <div class="row">
+    {% for obj in new_books %}
+      <div class="col">
+        <div class="card " style="width: 8rem;">
+          <li><a href="{% url 'book:book-card' obj.pk %}"><img src={{ obj.foto.url }} class="card-img-top" alt="...">
+            <div class="card-body">
+               <h5 class="card-title">{{ obj.name }}</h5>
+               <p class="card-text">{{ obj.author.surname }}</p>
+               <p class="card-text">Цена: {{ obj.price }} р</p>
+               <a href="#" class="btn btn-primary">Добавить в корзину</a>
+             </div>
+        </div>
+      </div>
+    {% endfor %}  
   </div>
-  <div class="row align-items-center">
-    <div class="col">
-      One of three columns
-    </div>
-    <div class="col">
-      One of three columns
-    </div>
-    <div class="col">
-      One of three columns
-    </div>
+<h2>Лучший рейтинг</h2> 
+  <div class="row">
+    {% for obj in best_books %}
+      <div class="col">
+        <div class="card " style="width: 8rem;">
+          <li><a href="{% url 'book:book-card' obj.pk %}"><img src={{ obj.foto.url }} class="card-img-top" alt="...">
+            <div class="card-body">
+               <h5 class="card-title">{{ obj.name }}</h5>
+               <p class="card-text">{{ obj.author.surname }} {{ obj.author.name }}</p>
+               <p class="card-text">Цена: {{ obj.price }} р</p>
+               <a href="#" class="btn btn-primary">Добавить в корзину</a>
+             </div>
+        </div>
+      </div>
+    {% endfor %}  
   </div>
-  <div class="row align-items-end">
-    <div class="col">
-      One of three columns
-    </div>
-    <div class="col">
-      One of three columns
-    </div>
-    <div class="col">
-      One of three columns
-    </div>
+<h2>Низкая цена</h2> 
+  <div class="row">
+    {% for obj in discount %}
+      <div class="col">
+        <div class="card " style="width: 8rem;">
+          <li><a href="{% url 'book:book-card' obj.pk %}"><img src={{ obj.foto.url }} class="card-img-top" alt="...">
+            <div class="card-body">
+               <h5 class="card-title">{{ obj.name }}</h5>
+               <p class="card-text">{{ obj.author.surname }} {{ obj.author.name }}</p>
+               <p class="card-text">Цена: {{ obj.price }} р</p>
+               <a href="#" class="btn btn-primary">Добавить в корзину</a>
+             </div>
+        </div>
+      </div>
+    {% endfor %}  
   </div>
-</div>
+</div>    
 
 {% endblock body %}

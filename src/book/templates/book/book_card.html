@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} About book {% endblock title %}
+{% block header %}{% endblock header %}
+
+{% block body %}
+<div class="card" style="width: 18rem;">
+    <img src={{ book.foto.url }} class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{ book.name }}</h5>
+      <p class="card-text">{{ book.author.surname }} {{ book.author.name }}</p>
+      <p class="card-text">Цена: {{ book.price }} р</p>
+      <a href="#" class="btn btn-primary">Добавить в корзину</a>
+    </div>
+  </div>
+{% endblock body %}

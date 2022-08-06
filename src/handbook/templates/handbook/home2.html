@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Буквоед: домашняя страница {% endblock title %}
+
+{% block body %}
+<h2>Новое поступление</h2> 
+<div class="grid text-center">
+    {% for obj in new_books %}
+    <div class="g-col-6 g-col-md-4">
+        <div class="card " style="width: 8rem;">
+            <li><a href="{% url 'book:book-card' obj.pk %}"><img src={{ obj.foto.url }} class="card-img-top" alt="...">
+              <div class="card-body">
+                 <h5 class="card-title">{{ obj.name }}</h5>
+                 <p class="card-text">{{ obj.author.surname }} {{ obj.author.name }}</p>
+                 <p class="card-text">Цена: {{ obj.price }} р</p>
+                 <a href="#" class="btn btn-primary">Добавить в корзину</a>
+               </div>
+          </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+{% endblock body %}

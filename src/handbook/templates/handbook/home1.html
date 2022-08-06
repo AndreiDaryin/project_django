@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} Буквоед: домашняя страница {% endblock title %}
+
+{% block body %}
+<div class="landing__header">
+    <section class="landing-header">
+    <div class="landing-header__line landing-header__line_top">
+    <h1 class="landing-header__title">Новое поступление </h1>
+    </div>
+    <div class="landing-header__line">
+    
+    <div class="landing-nav-list ">
+    <div class="landing-nav-list__line">
+    <div class="landing-nav-list__line-inner">
+    <ul class="landing-nav-list__list">
+     {% for obj in best_books %}
+    <li class="landing-nav-list__item"><a href="{% url 'book:book-card' obj.pk %}" class="landing-nav-list__link google-event">
+    <div class="landing-nav-list__img-container">
+    <div style="background-image: url( src={{ obj.foto.url }} )" class="landing-nav-list__img-container-inner">
+    </div>
+    </div>
+    <div class="landing-nav-list__content"><span class="landing-nav-list__title">{{obj}}</span>
+    </div></a>
+    </li>
+    {% endfor %}  
+    </ul>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+   </div>
+
+
+
+
+{% endblock body %}

@@ -25,5 +25,6 @@ urlpatterns = [
     path('handbook/', include('handbook.urls', namespace='handbook')),
     path('book/', include('book.urls', namespace='book')),
     path('login/', include('account.urls', namespace='account')),
+    path('orders/', include('orders.urls', namespace='orders')),
     
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

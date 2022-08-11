@@ -5,5 +5,25 @@
 
 {% block body %}
 <b>Name:</b> {{ author.name }} <br>
-<b>Description:</b> {{ author.description}}
+<b>Description:</b> {{ author.description}} <br>
+<br>
+<H2>Книги автора</H2>
+<div class="container text-center">
+    <div class="row">
+  
+     {% for obj in  object.authors.all %} 
+     <div class="col">        
+        <div class="card " style="width: 10rem;">
+            <a href="{% url 'book:book-card' obj.pk %}"><img src={{ obj.foto.url }} class="card-img-top" alt="..."></a>
+            <div class="card-body">
+                <h5 class="card-title">{{ obj.name }}</h5>
+                <p class="card-text">{{ obj.author.surname }} {{ obj.author.name }}</p>
+                <p class="card-text">Цена: {{ obj.price }} р</p>
+            </div>
+        </div>
+       </div>    
+      {% endfor %}
+
+</div>
+</div>
 {% endblock body %}

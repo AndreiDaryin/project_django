@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %} Cart {% endblock title %}
+{% block header %} Cart {% endblock header %}
+
+{% block body %} 
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" class="btn btn-danger" value="Вы уверены?">
+</form>
+{% endblock body %}

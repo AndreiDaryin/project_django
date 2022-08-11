@@ -3,4 +3,29 @@
 {% block title %} Cart {% endblock title %}
 {% block header %} Cart {% endblock header %}
 
-{% block body %} {% endblock body %}
+{% block body %} 
+<form action="{% url 'orders:update-cart' cart.pk%}" method="get">
+<table class="table">
+    <tr>
+        <td>Name</td>
+        <td>Quantity</td>
+        <td>Price</td>
+        <td>Actions</td>
+    </tr>
+    {% for item in cart.goods.all %}
+    <tr>
+        <td><img style='max-width: 100px' src={{ item.book.foto.url }} ></td>
+        <td> <input type="number" name="good_{{item.pk}}" id="" value="{{ item.quantity }}" min="1" step="1"></td>
+        <td>{{ item.price }}</td>
+        <td> <a href="{% url 'orders:delete-from-cart' item.pk %}" class="btn btn-danger">Удалить</a></td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan='3'> Total price</td>
+        <td>{{ cart.total_price }}</td>
+    </tr>
+</table>
+<input type="submit" name='action_type' value="update" class = 'btn btn-success'>
+<input type="submit" name='action_type' value="Заказать" class = 'btn btn-warning'>
+</form>
+{% endblock body %}

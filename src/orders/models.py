@@ -21,6 +21,11 @@ class Cart(models.Model):
         verbose_name="Update time",
         auto_now=True
     )
+    def total_price(self):
+        total = 0
+        for good in self.goods.all():
+            total+=good.price
+        return total
 
 class BookInCart(models.Model):
     cart = models.ForeignKey(
@@ -54,4 +59,37 @@ class BookInCart(models.Model):
         auto_now=True
     )
 
+
+class Order(models.Model):
+    cart = models.ForeignKey(
+        Cart,
+        on_delete=models.PROTECT,
+        related_name="orders",
+        verbose_name="Cart",
+    )
+    email = models.EmailField(
+        max_length=254,
+        verbose_name="Email",
+        blank=True,
+        null=True
+    )
+    adress = models.CharField(
+        verbose_name="Adress",
+        max_length=100,
+        blank=True,
+        null=True
+    )
+    phone_number = models.BigIntegerField(
+        verbose_name="Phone number",
+        blank=True,
+        null=True
+    )
+    created_date = models.DateTimeField(
+        verbose_name="Createtime",
+        auto_now_add=True,
+    )
+    update_date = models.DateTimeField(
+        verbose_name="Updatetime",
+        auto_now=True
+    )
 

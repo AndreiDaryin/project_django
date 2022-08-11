@@ -9,7 +9,11 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'account:user-login' %} "">Регистрация</a>
+              {% if user.is_anonymous %}
+              <a class="nav-link active" aria-current="page" href="{% url 'account:user-login' %} ">Регистрация</a>
+              {% else %}
+              <a class="nav-link" href="#">{{ user }}</a>
+              {% endif %}
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'book:book-list' %}">Книги</a>
@@ -21,7 +25,10 @@
               <a class="nav-link" href="{% url 'handbook:auth-list' %}">Авторы</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
+              <a class="nav-link" href="{% url 'handbook:serie-list' %}">Серии</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'handbook:publisher-list' %}">Издательства</a>
             </li>
           </ul>
           <form class="d-flex" role="search">

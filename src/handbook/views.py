@@ -16,9 +16,6 @@ class HomePage(generic.TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['genre_list'] = models.Bookgenre.objects.all()
-        context['publisher_list'] = models.Publisher.objects.all()
-        context['author_list'] = models.Author.objects.all()
         context['new_books'] = b_models.Book.objects.all().reverse()[:5:]
         context['best_books'] = b_models.Book.objects.filter(rating__gte=9).reverse()[:5:]
         context['discount'] = b_models.Book.objects.filter(price__lte=10).reverse()[:5:]
@@ -99,6 +96,12 @@ class GenreList(generic.ListView):
 class GenreDetailView(generic.DetailView):
     template_name = 'handbook//genre_view.html'
     model = models.Bookgenre
+
+        #def get_context_data(self, *args, **kwargs):
+        #    context = super().get_context_data(*args, **kwargs)
+        #    context['books'] = models.Bookgenre.genres.all()
+        #    return context
+    
 
 class GenreAdd(LoginRequiredMixin, generic.CreateView):
     template_name = 'handbook//genre_add.html'

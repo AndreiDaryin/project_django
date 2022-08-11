@@ -1,27 +1,69 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.http import HttpResponseRedirect
+from django.views.generic import TemplateView, DeleteView, DetailView
+from django.urls import reverse_lazy
 from book.models import Book
-from . models import Cart, BookInCart
+from . models import Cart, BookInCart, Order
 
-# Create your views here.
+def get_cart(view):
+    cart_id = view.request.session.get("cart")
+    if not cart_id:
+        if view.request.user.is_anonymous:
+            customer = None
+        else:
+            customer = view.request.user
+        cart = Cart.objects.create(
+            customer = customer
+        )
+        view.request.session["cart"] = cart.pk
+    else:
+        cart = Cart.objects.get(pk=cart_id)
+    return cart
+
+class DeleteFromCart(DeleteView):
+    template_name = "orders/delete-item.html"
+    model = BookInCart
+    success_url = reverse_lazy("orders:add-to-cart")
+
+class UpdateCart(DetailView):
+    template_name = "orders/cart.html"
+    model = BookInCart
+    def get_object(self, **kwargs):
+        cart = get_cart(self)
+        for good in self.request.GET.keys():
+            if good[:5] == "good_":
+                good_in_cart_pk = good.split("_")[1]
+                book_in_cart = BookInCart.objects.get(pk=int(good_in_cart_pk))
+                book_in_cart.quantity = int(self.request.GET.get(good))                
+                book_in_cart.price = book_in_cart.book.price  * book_in_cart.quantity
+                book_in_cart.save()
+        action_type = self.request.GET.get('action_type')
+        if action_type == 'Заказать':
+            order = Order.objects.create(
+                cart=book_in_cart.cart,
+            )
+            self.request.session.delete('cart')
+        return  cart
+
+    def render_to_response(self, context, **response_kwargs):
+        action_type = self.request.GET.get('action_type')
+        if action_type == 'Заказать':
+            return HttpResponseRedirect('/')
+        return super().render_to_response(context, **response_kwargs)
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
 class AddToCart(TemplateView):
     template_name = "orders/cart.html"
     def get_context_data(self, **kwargs):
         cart_id = self.request.session.get("cart")
         book_id = self.request.GET.get("book_id")
-        quantity = int(self.request.GET.get("quantity"))
-        print(self.request.session.items())
-        if not cart_id:
-            if self.request.user.is_anonymous:
-                customer = None
-            else:
-                customer = self.request.user
-            cart = Cart.objects.create(
-                customer = customer
-            )
-            self.request.session["cart"] = cart.pk
-        else:
-            cart = Cart.objects.get (pk=cart_id)
+        cart = get_cart(self)
+        if book_id:
+            quantity = int(self.request.GET.get("quantity"))
             book = Book.objects.get(pk=book_id)
             price = book.price * quantity
             book_in_cart, created = BookInCart.objects.get_or_create(
@@ -30,11 +72,12 @@ class AddToCart(TemplateView):
                 defaults = {
                     'quantity': quantity,
                     'price': price
-                }
-            )
+            }
+        )
             if not created:
                 book_in_cart.quantity += quantity
                 book_in_cart.price = book_in_cart.quantity *book.price
                 book_in_cart.save()
         context = super().get_context_data(**kwargs)
+        context['cart'] = cart
         return context

@@ -8,13 +8,23 @@
   <div class="row">
     {% for obj in new_books %}
       <div class="col">
-        <div class="card " style="width: 8rem;">
-          <li><a href="{% url 'book:book-card' obj.pk %}"><img src={{ obj.foto.url }} class="card-img-top" alt="...">
+        <div class="card " style="width: 12rem;">
+          <a href="{% url 'book:book-card' obj.pk %}"><img src={{ obj.foto.url }} class="card-img-top" alt="..."></a>
             <div class="card-body">
                <h5 class="card-title">{{ obj.name }}</h5>
                <p class="card-text">{{ obj.author.surname }}</p>
                <p class="card-text">Цена: {{ obj.price }} р</p>
-               <a href="#" class="btn btn-primary">Добавить в корзину</a>
+               <form action="{% url 'orders:add-to-cart' %}" method="get">
+                <input type="hidden" name="book_id" value="{{ obj.pk }}">
+                <div class="form-group row">
+                  <div class="col">
+                    <input type="submit" class="btn btn-primary" value="Добавить в корзину">
+                  </div>
+                  <div class="col">
+                    <input type="number" class="form-control" name="quantity" min="1" max="100" step="1" value="1">
+                  </div>
+                </div>
+              </form>
              </div>
         </div>
       </div>
@@ -24,13 +34,23 @@
   <div class="row">
     {% for obj in best_books %}
       <div class="col">
-        <div class="card " style="width: 8rem;">
-          <li><a href="{% url 'book:book-card' obj.pk %}"><img src={{ obj.foto.url }} class="card-img-top" alt="...">
+        <div class="card " style="width: 12rem;">
+          <a href="{% url 'book:book-card' obj.pk %}"><img src={{ obj.foto.url }} class="card-img-top" alt="..."></a>
             <div class="card-body">
                <h5 class="card-title">{{ obj.name }}</h5>
                <p class="card-text">{{ obj.author.surname }} {{ obj.author.name }}</p>
                <p class="card-text">Цена: {{ obj.price }} р</p>
-               <a href="#" class="btn btn-primary">Добавить в корзину</a>
+               <form action="{% url 'orders:add-to-cart' %}" method="get">
+                <input type="hidden" name="book_id" value="{{ obj.pk }}">
+                <div class="form-group row">
+                  <div class="col">
+                    <input type="submit" class="btn btn-primary" value="Добавить в корзину">
+                  </div>
+                  <div class="col">
+                    <input type="number" class="form-control" name="quantity" min="1" max="100" step="1" value="1">
+                  </div>
+                </div>
+              </form>
              </div>
         </div>
       </div>
@@ -40,13 +60,23 @@
   <div class="row">
     {% for obj in discount %}
       <div class="col">
-        <div class="card " style="width: 8rem;">
-          <li><a href="{% url 'book:book-card' obj.pk %}"><img src={{ obj.foto.url }} class="card-img-top" alt="...">
+        <div class="card " style="width: 12rem;">
+          <a href="{% url 'book:book-card' obj.pk %}"><img src={{ obj.foto.url }} class="card-img-top" alt="..."></a>
             <div class="card-body">
                <h5 class="card-title">{{ obj.name }}</h5>
                <p class="card-text">{{ obj.author.surname }} {{ obj.author.name }}</p>
                <p class="card-text">Цена: {{ obj.price }} р</p>
-               <a href="#" class="btn btn-primary">Добавить в корзину</a>
+               <form action="{% url 'orders:add-to-cart' %}" method="get">
+                <input type="hidden" name="book_id" value="{{ obj.pk }}">
+                <div class="form-group row">
+                  <div class="col">
+                    <input type="submit" class="btn btn-primary" value="Добавить в корзину">
+                  </div>
+                  <div class="col">
+                    <input type="number" class="form-control" name="quantity" min="1" max="100" step="1" value="1">
+                  </div>
+                </div>
+              </form>
              </div>
         </div>
       </div>

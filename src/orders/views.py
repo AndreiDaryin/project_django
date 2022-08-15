@@ -38,9 +38,17 @@ class UpdateCart(DetailView):
                 book_in_cart.price = book_in_cart.book.price  * book_in_cart.quantity
                 book_in_cart.save()
         action_type = self.request.GET.get('action_type')
+        customer_name = self.request.GET.get('customer_name')
+        customer_email = self.request.GET.get('customer_email')
+        customer_adress = self.request.GET.get('customer_adress')
+        customer_phone = self.request.GET.get('customer_phone')
         if action_type == 'Заказать':
             order = Order.objects.create(
                 cart=book_in_cart.cart,
+                name=customer_name,
+                email=customer_email,
+                adress=customer_adress,
+                phone_number=customer_phone
             )
             self.request.session.delete('cart')
         return  cart

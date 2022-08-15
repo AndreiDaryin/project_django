@@ -67,6 +67,12 @@ class Order(models.Model):
         related_name="orders",
         verbose_name="Cart",
     )
+    name = models.CharField(
+        verbose_name="Name",
+        max_length=25,
+        blank=True,
+        null=True
+    )
     email = models.EmailField(
         max_length=254,
         verbose_name="Email",

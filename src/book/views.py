@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse
 from django.urls import reverse_lazy
 from django.views import generic 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from . import models
 from . import forms
 
@@ -41,3 +42,22 @@ class BookEditView(LoginRequiredMixin, generic.UpdateView):
     
     def get_success_url(self):
         return reverse_lazy("book:book-det", kwargs={'pk': self.object.pk})
+
+class BookSearch(generic.ListView):
+    template_name = 'book//book_search.html'
+    model = models.Book
+    def get_queryset(self):
+        q = self.request.GET.get('search_query')
+        if q:
+            qs = self.model.objects.filter(Q(name__contains=q) |
+                Q(author__surname__contains=q) | Q(seria__name__contains=q) |
+                Q(genre__name__contains=q) | Q(publisher__name__contains=q))
+        else:
+            qs = []
+        return qs
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        q = self.request.GET.get('search_query', '')
+        context['search_query'] = q
+        return context

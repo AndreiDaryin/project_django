@@ -13,6 +13,7 @@ def handbook_view(request):
 
 class HomePage(generic.TemplateView):
     template_name = 'handbook/home.html'
+        
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)

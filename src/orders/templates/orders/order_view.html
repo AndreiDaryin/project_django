@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %} Order {% endblock title %}
+{% block header %} Заказ {% endblock header %}
+
+{% block body %}
+<b>Name:</b> {{ order.name }} <br>
+<b>Email:</b> {{ order.email }} <br>
+<b>Adress:</b> {{ order.adress }} <br>
+<b>Phone:</b> {{ order.phone_number }} <br>
+<b>created_date:</b> {{ order.created_date }} <br>
+<b>update_date:</b> {{ order.update_date }} <br>
+<b>Order status:</b> {{ order.ststus }} <br>
+<b>Books:</b><br>
+<table class="table">
+    <tr>
+        <td>Name</td>
+        <td>Quantity</td>
+        <td>Price</td>
+    </tr>
+    {% for obj in  object.cart.goods.all %}
+    <tr>
+        <td><img style='max-width: 100px' src={{ obj.book.foto.url }} ></td>
+        <td> {{ obj.quantity }} </td>
+        <td>{{ obj.price }}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan='2'> Total price</td>
+        <td>{{ object.cart.total_price }}</td>
+    </tr>
+</table>
+
+{% endblock body %}

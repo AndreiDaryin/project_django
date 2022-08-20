@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit an order {% endblock title %}
+{% block header %} Edit an order {% endblock header %}
+
+{% block body %}
+{% if perms.book.edit_book %}
+<form action="" method="post">
+   {% csrf_token %}
+   {{ form.as_p }} <br>
+   <input type="submit">
+</form>
+{% else %} <h2>Недостаточно прав </h2> 
+{% endif %}
+{% endblock body %}

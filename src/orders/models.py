@@ -90,6 +90,11 @@ class Order(models.Model):
         blank=True,
         null=True
     )
+    ststus = models.CharField(
+        verbose_name="Status",
+        max_length=50,
+        choices=(('Y','Обработан'), ('N','Необработан'), ('D','Отправлен'))
+    )
     created_date = models.DateTimeField(
         verbose_name="Createtime",
         auto_now_add=True,

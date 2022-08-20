@@ -4,9 +4,9 @@
 {% block header %} Bookseries list {% endblock header %}
 
 {% block body %}
-<ul>
+<ol class="list-group list-group-numbered">
     {% for bookserie in object_list %}
-    <li><a href="{% url 'handbook:serie-det' bookserie.pk%}">{{ bookserie.name }}</a> <a href="{% url 'handbook:serie-edit' bookserie.pk %}">(EDIT)</a></li>
+    <li class="list-group-item"><a href="{% url 'handbook:serie-det' bookserie.pk%}">{{ bookserie.name }}</a> <a href="{% url 'handbook:serie-edit' bookserie.pk %}"><i class="bi bi-pencil-fill"></i></a></li>
     {% endfor %}
-</ul>
+</ol>
 {% endblock body %}

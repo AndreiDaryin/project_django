@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Order's list {% endblock title %}
+{% block header %} Заказы {% endblock header %}
+
+{% block body %}
+<table class="table table-bordered border-primary">
+    <thead>
+        <tr>
+              <th scope="col">name</th>
+              <th scope="col">actions</th>
+        </tr> 
+    </thead>
+    <tbody>
+        {% for obj in object_list %}
+        <tr>
+            <td><a href="{% url 'orders:order-view' obj.pk%}">{{ obj.name }}{{ author.name }}</a></td>
+            <td><a href="{% url 'orders:order-edit' obj.pk %}"><i class="bi bi-pencil-fill"></i></a> 
+        </tr>   
+        {% endfor %}
+    </tbody>
+</table>
+    
+    
+{% endblock body %}

@@ -4,9 +4,9 @@
 {% block header %} Publisher list {% endblock header %}
 
 {% block body %}
-<ul>
+<ol class="list-group list-group-numbered">
     {% for obj in object_list %}
-    <li><a href="{% url 'handbook:publisher-det' obj.pk%}">{{ obj.name }}</a> <a href="{% url 'handbook:publisher-edit' obj.pk %}">(EDIT)</a></li>
+    <li class="list-group-item"><a href="{% url 'handbook:publisher-det' obj.pk%}">{{ obj.name }}</a> <a href="{% url 'handbook:publisher-edit' obj.pk %}"><i class="bi bi-pencil-fill"></i></a></li>
     {% endfor %}
-</ul>
+</ol>
 {% endblock body %}

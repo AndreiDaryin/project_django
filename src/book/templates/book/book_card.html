@@ -4,25 +4,50 @@
 {% block header %}{% endblock header %}
 
 {% block body %}
-<div class="card" style="width: 18rem;">
-  <img src={{ book.foto.url }} class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{ book.name }}</h5>
-    <p class="card-text">{{ book.author.surname }} {{ book.author.name }}</p>
-    <p class="card-text">Цена: {{ book.price }} р</p>
-    <form action="{% url 'orders:add-to-cart' %}" method="get">
-      
-      <input type="hidden" name="book_id" value="{{ book.pk }}">
-      <div class="form-group row">
-        <div class="col-8">
-          <input type="submit" class="btn btn-primary" value="Добавить в корзину">
+<div class="container text-center">
+  <div class="row align-items-center">
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img src={{ book.foto.url }} class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ book.name }}</h5>
+          <p class="card-text">{{ book.author.surname }} {{ book.author.name }}</p>
+          <p class="card-text">Цена: {{ book.price }} р</p>
+          <form action="{% url 'orders:add-to-cart' %}" method="get">      
+            <input type="hidden" name="book_id" value="{{ book.pk }}">
+            <div class="form-group row">
+              <div class="col-8">
+                <input type="submit" class="btn btn-primary" value="Заказать">
+              </div>
+              <div class="col-4">
+                <input type="number" class="form-control" name="quantity" min="1" max="100" step="1" value="1">
+              </div>        
+            </div>
+          </form>
         </div>
-        <div class="col-4">
-          <input type="number" class="form-control" name="quantity" min="1" max="100" step="1" value="1">
-        </div>
-        
       </div>
-    </form>
-  </div>
+    </div>
+    <div class="col">
+      <b>Name:</b> {{ book.name }} <br>
+      <b>Price:</b> {{ book.price }} <br>
+      <b>Author:</b> {{ book.author }} <br>
+      <b>Seria:</b> {{ book.seria }} <br>
+      <b>Genre:</b> {{ book.genre }} <br>
+      <b>Publisher:</b> {{ book.publisher }} <br>
+      <b>Year:</b> {{ book.year }} <br>
+      <b>Pages:</b> {{ book.number_of_pages }} <br>
+      <b>Cover:</b> {{ book.cover }} <br>
+      <b>Bookformat:</b> {{ book.bookformat }} <br>
+      <b>ISBN:</b> {{ book.isbn }} <br>
+      <b>Weight:</b> {{ book.weight }} <br>
+      <b>Age restrictions:</b> {{ book.restrictions }} <br>
+      <b>Number of books:</b> {{ book.number_of_books }} <br>
+      <b>Active y/n:</b> {{ book.activity }} <br>
+      <b>Rating:</b> {{ book.rating }} <br>
+      <b>Date of creation</b> {{ book.date_of_creation }} <br>
+      <b>Date of edit</b> {{ book.date_of_edit }} <br>
+    </div>
+    </div>
 </div>
+
 {% endblock body %}

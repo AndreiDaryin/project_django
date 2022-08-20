@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.views.generic import TemplateView, DeleteView, DetailView
+from django.views import generic
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from book.models import Book
 from . models import Cart, BookInCart, Order
+from . import forms
 
 def get_cart(view):
     cart_id = view.request.session.get("cart")
@@ -20,12 +22,12 @@ def get_cart(view):
         cart = Cart.objects.get(pk=cart_id)
     return cart
 
-class DeleteFromCart(DeleteView):
+class DeleteFromCart(generic.DeleteView):
     template_name = "orders/delete-item.html"
     model = BookInCart
     success_url = reverse_lazy("orders:add-to-cart")
 
-class UpdateCart(DetailView):
+class UpdateCart(generic.DetailView):
     template_name = "orders/cart.html"
     model = BookInCart
     def get_object(self, **kwargs):
@@ -64,7 +66,7 @@ class UpdateCart(DetailView):
         context = super().get_context_data(**kwargs)
         return context
 
-class AddToCart(TemplateView):
+class AddToCart(generic.TemplateView):
     template_name = "orders/cart.html"
     def get_context_data(self, **kwargs):
         cart_id = self.request.session.get("cart")
@@ -89,3 +91,20 @@ class AddToCart(TemplateView):
         context = super().get_context_data(**kwargs)
         context['cart'] = cart
         return context
+
+class OrderList(generic.ListView):
+    template_name = 'orders//order_list.html'
+    model = Order
+
+class OrderView(generic.DetailView):
+    template_name = 'orders//order_view.html'
+    model = Order
+
+class OrderEditView(LoginRequiredMixin, generic.UpdateView):
+    template_name = 'orders//order_edit_view.html'
+    model = Order
+    form_class = forms.AddOrderForm
+    login_url = reverse_lazy("account:user-login")
+    
+    def get_success_url(self):
+        return reverse_lazy("orders:order-view", kwargs={'pk': self.object.pk})

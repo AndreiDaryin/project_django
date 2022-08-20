@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
 
-{% block title %} Order's list {% endblock title %}
-{% block header %} Заказы {% endblock header %}
+{% block title %} Order {% endblock title %}
+{% block header %} Заказ {% endblock header %}
 
 {% block body %}
 <table class="table table-bordered border-primary">
     <thead>
         <tr>
               <th scope="col">name</th>
-              <th scope="col">actions</th>
+             
         </tr> 
     </thead>
     <tbody>
         {% for obj in object_list %}
+        {% if obj.cart.customer == user %}
         <tr>
             <td><a href="{% url 'orders:order-view' obj.pk%}">{{ obj.name }}</a></td>
-            <td><a href="{% url 'orders:order-edit' obj.pk %}"><i class="bi bi-pencil-fill"></i></a> 
         </tr>   
+        {% endif %}
         {% endfor %}
     </tbody>
 </table>
-    
-    
+
 {% endblock body %}

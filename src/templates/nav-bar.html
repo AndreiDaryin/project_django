@@ -52,6 +52,9 @@
             <a class="nav-link" href="#">{{ user }}</a>
             </li>
             <li class="nav-item"></li>
+            <a class="nav-link" href="{% url 'orders:order-customer-view' %}">Заказ</a>
+            </li>
+            <li class="nav-item"></li>
             <a  class="nav-link" href="{% url 'account:user-logout' %}">Выйти</a>
             </li> 
             {% endif %}

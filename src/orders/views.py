@@ -108,3 +108,7 @@ class OrderEditView(LoginRequiredMixin, generic.UpdateView):
     
     def get_success_url(self):
         return reverse_lazy("orders:order-view", kwargs={'pk': self.object.pk})
+
+class OrderCustomerView(generic.ListView):
+    template_name = 'orders//order_view_customer.html'
+    model = Order

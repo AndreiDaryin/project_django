@@ -27,10 +27,10 @@
             </li>
           </ul>
           <ul class="navbar-nav  mb-2 mb-md-0">           
-            {% if user.is_anonymous  %}
+            {% if user.is_anonymous  %}{% comment %}
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">1 USD={% currency %}руб</a>
-            </li>
+            </li>{% endcomment %}
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{% url 'account:user-login' %} ">Войти</a>
             </li>
@@ -38,23 +38,23 @@
             <li class="nav-item">
             <a class="nav-link" href="{% url 'orders:order-list' %}">Кабинет менеджера</a>
             </li>
-            <li class="nav-item"></li>
+            <li class="nav-item">
             <a class="nav-link" href="#">{{ user }}</a>
             </li>
-            <li class="nav-item"></li>
+            <li class="nav-item">
             <a  class="nav-link" href="{% url 'account:user-logout' %}">Выйти</a>
             </li> 
-            {% else %}
+            {% else %}{% comment %}
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">1 USD={% currency %}руб</a>
-            </li>
-            <li class="nav-item"></li>
+            </li>{% endcomment %}
+            <li class="nav-item">
             <a class="nav-link" href="#">{{ user }}</a>
             </li>
-            <li class="nav-item"></li>
+            <li class="nav-item">
             <a class="nav-link" href="{% url 'orders:order-customer-view' %}">Заказ</a>
             </li>
-            <li class="nav-item"></li>
+            <li class="nav-item">
             <a  class="nav-link" href="{% url 'account:user-logout' %}">Выйти</a>
             </li> 
             {% endif %}

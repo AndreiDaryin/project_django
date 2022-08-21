@@ -5,7 +5,7 @@
 {% block header %} Edit a serie {% endblock header %}
 
 {% block body %}
-{% if perms.handbook.edit_bookseries %}
+{% if perms.handbook.change_bookseries %}
 <form action="" method="post">
    {% csrf_token %}
    {{ form|crispy }} <br>

@@ -4,7 +4,7 @@
 {% block header %} Edit an author {% endblock header %}
 
 {% block body %}
-{% if perms.handbook.add_edit %}
+{% if perms.handbook.change_author %}
 <form action="" method="post">
    {% csrf_token %}
    {{ form.as_p }} <br>

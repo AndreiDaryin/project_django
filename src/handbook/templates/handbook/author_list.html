@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %} Author's list {% endblock title %}
-{% block header %} Author's list {% endblock header %}
+{% block header %} Список авторов {% endblock header %}
 
 {% block body %}
 <table class="table table-bordered border-primary">
@@ -14,7 +14,7 @@
     <tbody>
         {% for author in object_list %}
         <tr>
-            <td><a href="{% url 'handbook:auth-det' author.pk%}">{{ author.surname }}{{ author.name }}</a></td>
+            <td><a href="{% url 'handbook:auth-det' author.pk%}">{{ author.surname }} {{ author.name }}</a></td>
             <td><a href="{% url 'handbook:auth-edit' author.pk %}"><i class="bi bi-pencil-fill"></i></a> 
                 <a href="{% url 'handbook:auth-det' author.pk%}"><i class="bi bi-eye"></i></a>
                 <a href="{% url 'handbook:auth-del' author.pk%}"><i class="bi bi-trash"></i></a></td>

@@ -51,7 +51,8 @@ class BookSearch(generic.ListView):
         if q:
             qs = self.model.objects.filter(Q(name__contains=q) |
                 Q(author__surname__contains=q) | Q(seria__name__contains=q) |
-                Q(genre__name__contains=q) | Q(publisher__name__contains=q))
+                Q(genre__name__contains=q) | Q(publisher__name__contains=q) | 
+                Q(author__name__contains=q))
         else:
             qs = []
         return qs

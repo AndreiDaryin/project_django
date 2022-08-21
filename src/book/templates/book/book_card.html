@@ -46,6 +46,7 @@
       <b>Rating:</b> {{ book.rating }} <br>
       <b>Date of creation</b> {{ book.date_of_creation }} <br>
       <b>Date of edit</b> {{ book.date_of_edit }} <br>
+      <b><a href="{% url 'book:book-edit' book.pk %}">Редактировать<i class="bi bi-pencil-fill"></i></a></b>
     </div>
     </div>
 </div>

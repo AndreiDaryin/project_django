@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
+
 {% block title %} Add a book {% endblock title %}
 {% block header %} Добавление книги {% endblock header %}
 
 {% block body %}
 {% if perms.book.add_book %}
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
 {% csrf_token %}
 {{ form|crispy }} <br>
 <input type="submit">

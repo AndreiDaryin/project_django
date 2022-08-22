@@ -13,6 +13,7 @@ develop-eggs/
 dist/
 downloads/
 media/
+sett_code/
 eggs/
 .eggs/
 lib/

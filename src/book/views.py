@@ -26,7 +26,7 @@ class BookAdd(LoginRequiredMixin, generic.CreateView):
     login_url = reverse_lazy("account:user-login")
     
     def get_success_url(self):
-        return reverse_lazy("book:book-det", kwargs={'pk': self.object.pk})  
+        return reverse_lazy("book:book-card", kwargs={'pk': self.object.pk})  
     
 class BookDeleteView(LoginRequiredMixin, generic.DeleteView):
     template_name = 'book//book_delete.html'
@@ -41,7 +41,7 @@ class BookEditView(LoginRequiredMixin, generic.UpdateView):
     login_url = reverse_lazy("account:user-login")
     
     def get_success_url(self):
-        return reverse_lazy("book:book-det", kwargs={'pk': self.object.pk})
+        return reverse_lazy("book:book-card", kwargs={'pk': self.object.pk})
 
 class BookSearch(generic.ListView):
     template_name = 'book//book_search.html'

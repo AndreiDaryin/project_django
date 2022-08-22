@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
 {% block title %} Order's list {% endblock title %}
-{% block header %} Заказы {% endblock header %}
+{% block header %} Кабинет менеджера {% endblock header %}
 
 {% block body %}
+<h2> Заказы</h2>
 <table class="table table-bordered border-primary">
     <thead>
         <tr>
@@ -20,6 +21,11 @@
         {% endfor %}
     </tbody>
 </table>
-    
+<h2>Действия</h2>
+<b><a href="{% url 'book:book-list' %}">Книги</a></b> <b><a href="{% url 'book:book-add' %}">Добавить</a></b><br>
+<b><a href="{% url 'handbook:genre-list' %}">Жанры</a></b> <b><a href="{% url 'handbook:genre-add' %}">Добавить</a></b><br>
+<b><a href="{% url 'handbook:auth-list' %}">Авторы</a></b> <b><a href="{% url 'handbook:auth-add' %}">Добавить</a></b><br>
+<b><a href="{% url 'handbook:serie-list' %}">Серии</a></b> <b><a href="{% url 'handbook:serie-add' %}">Добавить</a></b><br>
+<b><a href="{% url 'handbook:publisher-list' %}">Издательства</a></b> <b><a href="{% url 'handbook:publisher-add' %}">Добавить</a></b>
     
 {% endblock body %}

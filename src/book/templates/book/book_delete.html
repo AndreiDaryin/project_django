@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %} Delete book {% endblock title %}
-{% block header %} Are you sure? You want to delete {{ object }} {% endblock header %}
+{% block header %} Вы уверены? Вы хотите удалить {{ object }}? {% endblock header %}
 
 {% block body %}
 {% if perms.book.delete_book %}

@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %} Bookgenre list {% endblock title %}
-{% block header %} Bookgenre list {% endblock header %}
+{% block header %} Список жанров {% endblock header %}
 
 {% block body %}
 <ol class="list-group list-group-numbered">
     {% for genre in object_list %}
-    <li class="list-group-item"><a href="{% url 'handbook:genre-det' genre.pk%}">{{ genre.name }}</a> <a href="{% url 'handbook:genre-edit' genre.pk %}"><i class="bi bi-pencil-fill"></i></a></li>
+    <li class="list-group-item"><a href="{% url 'handbook:genre-det' genre.pk%}">{{ genre.name }}</a> <a href="{% url 'handbook:genre-edit' genre.pk %}"><i class="bi bi-pencil-fill"></i></a> <a href="{% url 'handbook:genre-del' genre.pk %}"><i class="bi bi-trash"></i></a></li>
     {% endfor %}
   </ol>
 {% endblock body %}

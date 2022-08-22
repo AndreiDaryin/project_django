@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %} Bookseries list {% endblock title %}
-{% block header %} Bookseries list {% endblock header %}
+{% block header %} Список среий {% endblock header %}
 
 {% block body %}
 <ol class="list-group list-group-numbered">
     {% for bookserie in object_list %}
-    <li class="list-group-item"><a href="{% url 'handbook:serie-det' bookserie.pk%}">{{ bookserie.name }}</a> <a href="{% url 'handbook:serie-edit' bookserie.pk %}"><i class="bi bi-pencil-fill"></i></a></li>
+    <li class="list-group-item"><a href="{% url 'handbook:serie-det' bookserie.pk%}">{{ bookserie.name }}</a> <a href="{% url 'handbook:serie-edit' bookserie.pk %}"><i class="bi bi-pencil-fill"></i></a> <a href="{% url 'handbook:serie-del' bookserie.pk %}"><i class="bi bi-trash"></i></a></li>
     {% endfor %}
 </ol>
 {% endblock body %}

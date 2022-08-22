@@ -7,10 +7,10 @@
 <form action="{% url 'orders:update-cart' cart.pk%}" method="get">
 <table class="table">
     <tr>
-        <td>Name</td>
-        <td>Quantity</td>
-        <td>Price</td>
-        <td>Actions</td>
+        <td>Название</td>
+        <td>Количество</td>
+        <td>Цена</td>
+        <td>Действия</td>
     </tr>
     {% for item in cart.goods.all %}
     <tr>
@@ -21,7 +21,7 @@
     </tr>
     {% endfor %}
     <tr>
-        <td colspan='3'> Total price</td>
+        <td colspan='3'> Полная стоимость</td>
         <td>{{ cart.total_price }}</td>
     </tr>
 </table>
@@ -30,7 +30,7 @@
 <input type="text" class="col-6" name="customer_email" placeholder="Введите Ваш email"><br>
 <input type="text" class="col-6" name="customer_adress" placeholder="Введите Ваш адрес"><br>
 <input type="text" class="col-6" name="customer_phone" placeholder="Введите Ваш номер телефона"><br>
-<input type="submit" name='action_type' value="update" class = 'btn btn-success'>
+<input type="submit" name='action_type' value="Обновить" class = 'btn btn-success'>
 <input type="submit" name='action_type' value="Заказать" class = 'btn btn-warning'>
 </form>
 {% endblock body %}
